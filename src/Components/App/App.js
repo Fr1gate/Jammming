@@ -49,9 +49,10 @@ class App extends React.Component {
     } 
 
     let temp = this.state.playlist;
+    temp.push(track);
 
     this.setState({
-      playlist: temp.push(track)
+      playlist: temp
     });
     console.log(this.state);
   }
@@ -66,6 +67,7 @@ class App extends React.Component {
             <SearchResults 
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}/>
+            {console.log(this.state.playlist)}
             <Playlist 
               playlist={this.state.playlist}/>
           </div>
