@@ -26,7 +26,6 @@ export default class SearchBar extends React.Component {
 
     handleClick(e) {
         this.search(this.state.term);
-        console.log('<a /> clicked')
     }
 
     render() {

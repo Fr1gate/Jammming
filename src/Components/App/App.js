@@ -36,7 +36,6 @@ class App extends React.Component {
     this.setState({
       playlist: temp
     });
-    console.log(this.state);
   }
 
   removeTrack(track) {
