@@ -26,6 +26,7 @@ export default class SearchBar extends React.Component {
     }
 
     handleClick(e) {
+        e.preventDefault();
         this.search(this.state.term);
     }
 
@@ -38,13 +39,13 @@ export default class SearchBar extends React.Component {
 
     render() {
         return (
-            <div className="SearchBar">
+            <form className="SearchBar">
                 <input 
                     placeholder="Enter A Song, Album, or Artist" 
                     onChange={this.handleTermChange}
                     onKeyDown={this.handleKeyDown}/>
-                <a onClick={this.handleClick}>SEARCH</a>
-            </div>
+                <button onClick={this.handleClick}>SEARCH</button>
+            </form>
         )
     }
 }
