@@ -27,14 +27,19 @@ const Spotify = {
         }
     },
 
-    search(term) {
+    search(term, infoWindow) {
         const accessToken = this.getAccessToken();
         const req = {
             headers: {Authorization: `Bearer ${accessToken}`}
         };
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`, req)
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }                    
+                else {
+                    infoWindow(response.statusText);
+                }
             })
             .then(jsonResponse => {
                 if (!jsonResponse.tracks.items) {
@@ -54,8 +59,9 @@ const Spotify = {
         
     },
 
-    savePlaylist(playlistName, tracksUris) {
+    savePlaylist(playlistName, tracksUris, infoWindow) {
         if (!playlistName || !tracksUris) {
+            infoWindow('Add tracks and set tracklist name!')
             return;
         } else {
             if (!accessToken) {
@@ -65,7 +71,12 @@ const Spotify = {
             let userID;
             fetch('https://api.spotify.com/v1/me', {headers: headers})
                 .then(response => {
-                    return response.json();
+                    if (response.ok) {
+                        return response.json()
+                    }                    
+                    else {
+                        infoWindow(response.statusText);
+                    }
                 }).then(jsonResponse => {
                     userID = jsonResponse.id;
                     return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
@@ -73,14 +84,21 @@ const Spotify = {
                         method: 'POST',
                         body: JSON.stringify({name: playlistName})
                     })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json()
+                        }                    
+                        else {
+                            infoWindow(response.statusText);
+                        }
+                    })
                     .then(jsonResponse => {
                         const playlistID = jsonResponse.id;
                         return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
                             headers: headers,
                             method: 'POST',
                             body: JSON.stringify({uris: tracksUris})
-                        })
+                        }).then(response => infoWindow(response.statusText));
                     })
                 })
         }

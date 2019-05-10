@@ -3,8 +3,8 @@ import './App.css'
 import SearchBar from '../SearchBar/SearchBar.js'
 import SearchResults from '../SearchResults/SearchResults.js'
 import Playlist from '../Playlist/Playlist.js'
+import InfoWindow from '../InfoWindow/InfoWindow.js'
 import Spotify from '../../util/Spotify.js'
-
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +12,9 @@ class App extends React.Component {
     this.state = {
       searchResults: [],
       playlist: [],
-      playlistName: 'Default Playlist Name'
+      playlistName: 'Default Playlist Name',
+      infoWindowVisible: false, 
+      infoWindowInfo: 'Default info'
     }
 
     /////// BINDS ///////
@@ -21,6 +23,18 @@ class App extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.savePlaylist = this.savePlaylist.bind(this);
     this.search = this.search.bind(this);
+    this.toggleInfoWindow = this.toggleInfoWindow.bind(this);
+  }
+
+  toggleInfoWindow(info) {
+    if (info) {
+      this.setState({
+        infoWindowInfo: info
+      })
+    } 
+    this.setState({
+      infoWindowVisible: this.state.infoWindowVisible?false:true
+    })
   }
 
   addTrack(track) {
@@ -55,11 +69,11 @@ class App extends React.Component {
   savePlaylist() {
     let trackURIs = this.state.playlist.map(track => track.uri);
 
-    Spotify.savePlaylist(this.state.playlistName, trackURIs);
+    Spotify.savePlaylist(this.state.playlistName, trackURIs, this.toggleInfoWindow)
   }
 
   search(term) {
-    Spotify.search(term).then(results => {
+    Spotify.search(term, this.toggleInfoWindow).then(results => {
       this.setState({
         searchResults: results
       })
@@ -69,6 +83,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <InfoWindow visible={this.state.infoWindowVisible} info={this.state.infoWindowInfo} clickOK={this.toggleInfoWindow}/>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
           <SearchBar 
