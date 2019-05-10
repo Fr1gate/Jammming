@@ -1,0 +1,42 @@
+.info-window {
+    width: 20rem;
+    padding: 1rem 1rem;
+    /**/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    /**/
+    z-index: 99;
+    background-color: #010c3f; 
+    display: none;
+    text-align: center;
+}
+
+.info-window p {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 500;
+    color: #fff;
+}
+
+.visible {
+    display: block !important;
+}
+
+button {
+    cursor: pointer;
+    width: 10rem;
+    padding: .77rem 0;
+    border-radius: 54px;
+    margin-top: 1.27rem;
+    background-color: #6c41ec;
+    text-align: center;
+    font-size: .83rem;
+    color: #fff;
+    font-weight: bold;
+}
+  
+button {
+    background-color: rgba(108, 65, 233, .7);
+}
