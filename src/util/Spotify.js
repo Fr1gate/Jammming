@@ -57,7 +57,7 @@ const Spotify = {
     },
 
     savePlaylist(playlistName, tracksUris, infoWindow) {
-        if (!playlistName || !tracksUris) {
+        if (!playlistName || !tracksUris || tracksUris.length < 1) {
             infoWindow('Add tracks and set tracklist name!')
             return;
         } else {
@@ -95,7 +95,7 @@ const Spotify = {
                             headers: headers,
                             method: 'POST',
                             body: JSON.stringify({uris: tracksUris})
-                        }).then(response => infoWindow(response.statusText));
+                        }).then(response => infoWindow(response.statusText || "Playlist created"));
                     })
                 })
         }
