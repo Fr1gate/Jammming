@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/Jammming/static/js/runtime~main.23f8de95.js"
   },
   {
-    "revision": "bb881f9dd129c32deccb",
-    "url": "/Jammming/static/js/main.6f0e0698.chunk.js"
+    "revision": "94b35d6654d831123e06",
+    "url": "/Jammming/static/js/main.d1239303.chunk.js"
   },
   {
     "revision": "5b537948f24afc95a481",
     "url": "/Jammming/static/js/2.5dbd8ed4.chunk.js"
   },
   {
-    "revision": "bb881f9dd129c32deccb",
+    "revision": "94b35d6654d831123e06",
     "url": "/Jammming/static/css/main.4d197912.chunk.css"
   },
   {
-    "revision": "24b67d9ba175ecfc65dd0dd93470ee01",
+    "revision": "5f4bffb70f2c52e9b2014c87b3d3fa91",
     "url": "/Jammming/index.html"
   }
 ];
