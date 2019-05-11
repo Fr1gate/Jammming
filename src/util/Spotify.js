@@ -1,8 +1,5 @@
-//for privacy
-//import {SpotifyId} from './SpotifyId.js'
-
 const clientID = "a95d5b29ba8e42b3b73a0a4bc23f1535";
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'https://fr1gate.github.io/Jammming/';
 let accessToken;
 let expiresIn;
 
