@@ -32,7 +32,7 @@ export default class SearchBar extends React.Component {
 
     handleKeyDown(e) {
         //13 - ENTER
-        if (e.keyCode == 13) {
+        if (e.keyCode === 13) {
             this.search(this.state.term);
         }
     }
